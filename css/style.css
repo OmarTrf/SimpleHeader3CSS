@@ -1,0 +1,245 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.container{
+	min-height: 100vh;
+	width: 100%;
+	background-color: #485461;
+	background-image: linear-gradient(135deg, #485461 0%, #28313b 74%);
+}
+nav{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+	height: 60px;
+	z-index: 2;
+}
+.menu{
+	max-width: 72rem;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #fff;
+	z-index: 2;
+}
+.logo a{
+	font-size: 1.1rem;
+	font-weight: 800;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	line-height: 4rem;
+	color: #fff;
+	text-decoration: none;
+}
+.logo span{
+	font-weight: 300;
+}
+.hamburger-menu{
+	height: 4rem;
+	width: 3rem;
+	cursor: pointer;
+	background: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.bar{
+	width: 1.9rem;
+	height: 1.5px;
+	border-radius: 2px;
+	background-color: #ddd;
+	transition: .5s;
+}
+.bar:before,
+.bar:after{
+	content: "";
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	background-color: #ddd;
+	transition: .5s;
+}
+.bar:after{
+	transform: translateY(10px);
+}
+.bar:before{
+	transform: translateY(-10px);
+}
+.main{
+	position: relative;
+	width: 100%;
+	left: 0;
+	/*z-index: 10;*/
+	background-color: #ddd;
+	transform-origin: left;
+	transform-style: preserve-3d;
+	transition:ease .7s all;
+	z-index: 1;
+}
+header{
+	min-height: 100vh;
+	width: 100%;
+	background-image: url("../img/bg.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+}
+.overlay{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(43, 51, 59, .5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.inner{
+	max-width: 36rem;
+	height: 170px;
+	text-align:center;
+	padding: 0 2rem;
+	color: #ddd;
+	position: relative;
+}
+.title{
+	font-size: 2.7rem;
+	margin-bottom: 15px;
+}
+.btn{
+	position: absolute;
+	bottom: 15%;
+	left: 34%;
+	margin-top: 200px;
+	padding: .7rem 1.8rem;
+	background-color: #1179e7;
+	color: #ddd;
+	border:none;
+	border-radius: 25px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: 600;
+	cursor: pointer;
+}
+/*Container*/
+.container.active .bar{
+	transform: rotate(360deg);
+	background-color: transparent;
+}
+.container.active .bar:before{
+	transform: translateY(0) rotate(45deg);
+}
+.container.active .bar:after{
+	transform: translateY(0) rotate(-45deg);
+}
+.container.active .main{
+	animation: main-animation .5s ease;
+	transform:perspective(1350px) rotateY(20deg) translateZ(310px) scale(.55);
+	cursor: pointer;
+}
+@keyframes main-animation{
+	from{
+		transform: translate(0);
+	}
+	to{
+		transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+	}
+}
+/*Links*/
+.links{
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100vh;
+	width: 28%;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+}
+.links ul{
+	list-style: none;
+}
+.links a{
+	text-decoration: none;
+	color: #ddd;
+	padding: .7rem 0;
+	display: inline-block;
+	font-size: 1.6rem;
+	font-weight: 500;
+	letter-spacing: 1px;
+	transition: .4s;
+	transform: translateY(10px);
+	animation: hide .5s forwards ease;
+	opacity: 0;
+}
+.links a:hover{
+	color: #f5d1d1;
+	font-weight: 300;
+    border-bottom: 2px solid #f5d1d1; 
+}
+.container.active .links a{
+	animation: appear .5s forwards ease var(--i);
+}
+@keyframes appear{
+	from{
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to{
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes hide{
+	from{
+		opacity:1;
+		transform: translateY(0);
+	}
+	to{
+		opacity: 0;
+		transform: translateY(10px);
+	}
+}
+.shadow{
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	transform-style: preserve-3d;
+	transform-origin: left;
+	transition: all .2s ease;
+ }
+.shadow.one{
+	background: #fff;
+	z-index: 0;
+	opacity: .2;
+}
+.container.active .shadow.one{
+	animation: shadow-one .6s ease-out;
+	transform: perspective(1300px) rotateY(20deg) translateZ(215px) scale(0.5);
+}
+@keyframes shadow-one{
+	0%{
+		transform: translate(0);
+	}
+	5%{
+		transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+	}
+	100%{
+		transform: perspective(1300px) rotateY(20deg) translateZ(310px) scale(0.5);
+}
+	}
+}
